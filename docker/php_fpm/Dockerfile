@@ -1,6 +1,6 @@
 FROM php:8.4-fpm-alpine
 
-WORKDIR /srv/basis_member
+WORKDIR /srv/php_fpm
 
 # Install necessary Alpine packages
 RUN apk add --no-cache \
