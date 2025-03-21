@@ -1,0 +1,36 @@
+services:
+  php_fpm:
+    build:
+      context: ./docker/php_fpm
+    container_name: php_fpm
+    volumes:
+      - ./src/php_fpm:/srv/php_fpm
+    networks:
+      - app_network
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    volumes:
+      - mysqldata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: local
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./src:/srv
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - app_network
+
+networks:
+  app_network:
+
+volumes:
+  mysqldata:
