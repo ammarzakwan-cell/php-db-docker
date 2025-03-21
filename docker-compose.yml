@@ -17,8 +17,14 @@ services:
       - "3306:3306"
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: local
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_DATABASE: sapura
+      MYSQL_USER: admin
+      MYSQL_ROOT_PASSWORD : ${MYSQL_ROOT_PASSWORD}
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "2GB"
 
   nginx:
     image: nginx:latest
