@@ -24,6 +24,8 @@ services:
         limits:
           cpus: "1.0"
           memory: "2GB"
+    networks:
+      - app_network
 
   nginx:
     image: nginx:latest
