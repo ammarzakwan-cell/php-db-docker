@@ -9,7 +9,7 @@ services:
       - app_network
 
   mysql:
-    image: mysql:latest
+    image: mysql:8.0.41
     container_name: mysql
     volumes:
       - mysqldata:/var/lib/mysql
