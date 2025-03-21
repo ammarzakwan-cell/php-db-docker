@@ -21,7 +21,7 @@ session_start();
 
 try {
     $pdo = new PDO(
-        "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_DATABASE']};port={$_ENV['DB_PORT']}",
+        "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_DATABASE']};port=3306",
         $_ENV['DB_USERNAME'],
         $_ENV['DB_PASSWORD'],
         [
