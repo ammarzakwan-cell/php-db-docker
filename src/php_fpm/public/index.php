@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-use App\Models\User;
 
 define('ROOT_PATH', dirname(__DIR__));
 
@@ -20,6 +19,22 @@ date_default_timezone_set('Asia/Kuala_lumpur');
 
 session_start();
 
-$users = User::get();
+try {
+    $pdo = new PDO(
+        "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_DATABASE']};port={$_ENV['DB_PORT']}",
+        $_ENV['DB_USERNAME'],
+        $_ENV['DB_PASSWORD'],
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
+    );
 
-dd($users);
+    // Query users
+    $stmt = $pdo->query("SELECT * FROM users");
+    $users = $stmt->fetchAll();
+
+    dd($users);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
