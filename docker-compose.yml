@@ -18,8 +18,7 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: sapura
-      MYSQL_USER: admin
-      MYSQL_ROOT_PASSWORD : ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     deploy:
       resources:
         limits:
